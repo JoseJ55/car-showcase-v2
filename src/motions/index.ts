@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 export const transition = { type: 'spring', duration: 0.8 };
 
 export const slideAnimation = (direction: string, magnitude: number = 100) => ({

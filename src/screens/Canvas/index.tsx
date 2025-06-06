@@ -66,18 +66,26 @@ export const CanvasScreen = () => {
                             <motion.div
                                 className={
                                     `
-                                        w-1/2 p-10 flex flex-col justify-center items-center bg-faded rounded-xl gap-8
-                                        pointer-events-auto
+                                        w-1/2 p-10 flex flex-col justify-center items-start bg-faded rounded-xl
+                                        pointer-events-auto text-main
                                     `
                                 }
                                 {...slideAnimation('left', 2500)}
                             >
-                                <p className='text-3xl text-main font-semibold'>Customize Your Car</p>
+                                <p className='text-3xl font-semibold mb-4'>Interactive 3D Cars</p>
+                                <p className='w-2/3 mb-2 text-start'>
+                                    Experience the power of real-time 3D in your browser using Three.js — a powerful
+                                    JavaScript library built on WebGL
+                                </p>
+                                <p className='w-2/3 mb-2 text-start'>
+                                    Explore smooth transitions, detailed lighting, and model animations — all running
+                                    natively in the browser, with no plugins required.
+                                </p>
                                 <button
                                     className={
                                         `
                                             bg-accent/70 hover:bg-accent border-none rounded-xl py-2 px-4 min-w-[150px] 
-                                            hover:cursor-pointer text-main
+                                            hover:cursor-pointer text-main mt-4 self-end
                                         `
                                     }
                                     onClick={() => {
@@ -90,8 +98,20 @@ export const CanvasScreen = () => {
                                     type='button'
                                     aria-label='Customize'
                                 >
-                                    Custom
+                                    Let's Roll
                                 </button>
+                            </motion.div>
+                            <motion.div
+                                className='absolute bottom-2 left-2 w-full self-start text-xs text-white/70 mt-8'
+                                {...slideAnimation('left', 200)}
+                            >
+                                <p>
+                                    Built with React, Three.js, and @react-three/fiber.
+                                </p>
+                                <p>
+                                    Models sourced from Sketchfab. Animations and camera handled in real-time using
+                                    GPU-accelerated rendering.
+                                </p>
                             </motion.div>
                         </motion.section>
                     )}
