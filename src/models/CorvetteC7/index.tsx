@@ -17,6 +17,7 @@ export const CorvetteC7 = () => {
     const snap = useSnapshot(state);
 
     const shouldAnimate = useRef<boolean>(false);
+    const speed = useRef(5);
 
     const dracoLoader = useMemo(() => {
         const loader = new DRACOLoader();
@@ -35,63 +36,49 @@ export const CorvetteC7 = () => {
     useEffect(() => {
         if (snap.newCar || snap.moveCar) {
             shouldAnimate.current = true;
+            speed.current = snap.newCar ? 10 : 5;
         }
     }, [snap.newCar, snap.moveCar]);
 
     useFrame((s, delta) => {
         if (!shouldAnimate.current) return;
+        const group = gltf.scene.children[0].children[0].children[0];
 
-        // Animation to change to another vehicle.
-        if (snap.moveCar) {
-            const t = s.clock.getElapsedTime();
-            const speed = 5;
+        if (!group) return;
 
-            const group = gltf.scene.children[0].children[0].children[0];
-            group.children[0].rotation.x = t * speed;
-            group.children[2].rotation.x = t * speed;
-            group.children[4].rotation.x = t * speed;
-            group.children[6].rotation.x = t * speed;
+        const t = s.clock.getElapsedTime();
 
-            const direction = new Vector3(0, 0, 1); // (0.2, -0.035, 0)
+        [0, 2, 4, 6].forEach((i) => {
+            if (group.children[i]) {
+                group.children[i].rotation.x = t * speed.current;
+            }
+        });
 
-            gltf.scene.position.addScaledVector(direction, speed * delta);
-        }
+        const direction = new Vector3(0, 0, 1);
+        gltf.scene.position.addScaledVector(direction, speed.current * delta);
 
-        // Animation to move the vehicle on screen.
-        if (snap.newCar) {
-            const t = s.clock.getElapsedTime();
-            const speed = 10;
-
-            const group = gltf.scene.children[0].children[0].children[0];
-            group.children[0].rotation.x = t * speed;
-            group.children[2].rotation.x = t * speed;
-            group.children[4].rotation.x = t * speed;
-            group.children[6].rotation.x = t * speed;
-
-            const direction = new Vector3(0, 0, 1);
-
-            gltf.scene.position.addScaledVector(direction, speed * delta);
-        }
-
-        if (gltf.scene.position.z >= 0 && (snap.newCar || snap.moveCar)) {
+        if (snap.newCar && snap.carInView && gltf.scene.position.z >= 10) { // tracks when car leaves
+            state.carInView = false;
+            state.newCar = false;
+            state.moveCar = false;
+            shouldAnimate.current = false;
+            gltf.scene.position.z = -10;
+        } else if (snap.moveCar && gltf.scene.position.z >= 0) { // track car coming in
+            state.carInView = true;
             state.newCar = false;
             state.moveCar = false;
             shouldAnimate.current = false;
         }
     });
 
-    useMemo(() => {
+    useEffect(() => {
         gltf.scene.scale.set(0.005, 0.005, 0.005);
-        // gltf.materials.Car_Paint.color.r = (snap.color.r / 255) * lightScaler;
-        // gltf.materials.Car_Paint.color.g = (snap.color.g / 255) * lightScaler;
-        // gltf.materials.Car_Paint.color.b = (snap.color.b / 255) * lightScaler;
-
         gltf.scene.position.set(0, -0.035, -10);
         gltf.scene.traverse((object) => {
-        if (object instanceof Mesh) {
-            object.castShadow = true;
-            object.receiveShadow = true;
-        }
+            if (object instanceof Mesh) {
+                object.castShadow = true;
+                object.receiveShadow = true;
+            }
         });
     }, [gltf]);
 

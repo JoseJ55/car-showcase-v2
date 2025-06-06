@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-main: rgba(0,0,0,1);
+  --color-faded: rgba(211, 228, 255, 0.749);
+  --color-accent: rgba(138, 180, 248, 1);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
