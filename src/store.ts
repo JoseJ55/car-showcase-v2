@@ -47,6 +47,7 @@ const state = proxy({
   ],
   newCar: false, // For car animation to animate car coming into view.
   moveCar: false, // For moving the current car off screen.
+  carInView: false,
   showCar: true, // Render the vehicle
   loaded: { elements: false, models: false, all: false },
 });
