@@ -33,7 +33,7 @@ export const CanvasScreen = () => {
                     fov={60}
                     position={[3, 2, 5]}
                 />
-                <color args={[0, 0, 0]} attach='background' />
+                {/* <color args={[0, 0, 0]} attach='background' /> */}
 
                 <Lights />
 
@@ -89,7 +89,6 @@ export const CanvasScreen = () => {
                                         `
                                     }
                                     onClick={() => {
-                                        console.log('car in view', snap.carInView);
                                         if (!snap.carInView) {
                                             state.moveCar = true;
                                         }
@@ -147,7 +146,7 @@ export const CanvasScreen = () => {
                                         `
                                             absolute bottom-4 left-1/2 -translate-x-1/2 p-2 rounded-xl border-2 
                                             border-accent flex justify-center items-center pointer-events-auto 
-                                            bg-faded/80 min-w-[350px]
+                                            bg-faded/80 min-w-[350px] gap-4
                                         `
                                     }
                                     {...slideAnimation('up', 500)}
@@ -159,11 +158,34 @@ export const CanvasScreen = () => {
                                                 hover:bg-accent hover:cursor-pointer
                                             `
                                         }
-                                        onClick={() => null}
+                                        onClick={() => {
+                                            if (snap.currentVehicle !== snap.vehicles[0]) {
+                                                state.currentVehicle = snap.vehicles[0];
+                                                state.newCar = true;
+                                            }
+                                        }}
                                         type='button'
                                         aria-label='Customize'
                                     >
                                         Corvette C7
+                                    </button>
+                                    <button
+                                        className={
+                                            `
+                                                w-fit min-w-[150px] px-4 py-2 text-main bg-accent/70 rounded-xl 
+                                                hover:bg-accent hover:cursor-pointer
+                                            `
+                                        }
+                                        onClick={() => {
+                                            if (snap.currentVehicle !== snap.vehicles[1]) {
+                                                state.currentVehicle = snap.vehicles[1];
+                                                state.newCar = true;
+                                            }
+                                        }}
+                                        type='button'
+                                        aria-label='Customize'
+                                    >
+                                        Mclaren P1
                                     </button>
                                 </motion.div>
 
