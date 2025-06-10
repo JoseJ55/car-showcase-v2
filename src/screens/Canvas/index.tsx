@@ -33,21 +33,12 @@ export const CanvasScreen = () => {
                     fov={60}
                     position={[3, 2, 5]}
                 />
-                {/* <color args={[0, 0, 0]} attach='background' /> */}
+                <color args={[0, 0, 0]} attach='background' />
 
                 <Lights />
 
                 <CubeCamera resolution={128} frames={Infinity}>
                     {(texture) => {
-                        // if (snap.showCar) {
-                        //     return (
-                        //     <>
-                        //         <Environment map={texture} />
-                        //         <Car />
-                        //     </>
-                        //     );
-                        // }
-                        // return null;
                         return (
                             <>
                                 <Environment map={texture} />

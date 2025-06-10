@@ -94,7 +94,7 @@ export const CorvetteC7 = () => {
             setTimeout(async() => {
                 state.moveCar = true;
                 shouldAnimate.current = true;
-            }, 3000);
+            }, 5000);
             return;
         } else if (snap.moveCar && !snap.carInView && gltf[carIndex].scene.position.z >= 0) { // track car coming in
             state.carInView = true;
