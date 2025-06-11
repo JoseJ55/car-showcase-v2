@@ -1,54 +1,42 @@
-# React + TypeScript + Vite
+# Interactive 3D Car Showcase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a real-time 3D car experience built with **React**, **Three.js**, and **@react-three/fiber**, showcasing dynamic car models, camera transitions, reflections, lighting, and smooth animations—all rendered in the browser.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Animated Car Transitions**: Vehicles drive in and out of view with custom logic and animation timing.
+- **Custom Camera Controls**: Orbit controls with auto-rotation during intro screen.
+- **Real-Time Environment**: Dynamic lighting, shadows, and real-time environment reflections using cube cameras.
+- **Vehicle Switching**: Swap between different car models (e.g., Corvette C7, McLaren P1).
+- **UI Transitions**: Smooth interface animations via `react/motion`.
+- **Optimized for Performance**:
+  - DRACO compression for 3D models
+  - Preload and reuse GLTF scenes efficiently
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+| Tool | Purpose |
+|------|---------|
+| **React** | Frontend framework |
+| **Three.js** | 3D rendering |
+| **@react-three/fiber** | React renderer for Three.js |
+| **@react-three/drei** | Useful abstractions for Three.js (e.g., `Environment`, `PerspectiveCamera`, `OrbitControls`) |
+| **Valtio** | Lightweight state management |
+| **Framer Motion** | UI transitions and animations |
+| **GLTF + DRACO** | Compressed 3D models with faster load time |
+| **Sketchfab** | Model source (licensed under CC-BY-4.0) |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Models & Attribution
+Corvette C7 and McLaren P1 3D models provided by creators on Sketchfab, used under CC-BY-4.0.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Future Enhancements (Ideas)
+* Environment switching
+* Model loading indicators
+* Car customization UI
+* Mobile enable
+* Performance tuning (LOD, lazy loading)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## License
+This project is for personal/demo use. All 3D models and textures belong to their respective authors as credited.
