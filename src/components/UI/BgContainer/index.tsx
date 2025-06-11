@@ -12,8 +12,9 @@ export const BgContainer = ({ className, children, ...rest }: BgContainerInterfa
             className={
                 `
                     ${className}
-                    w-fit h-fit p-10 flex flex-col justify-center items-start bg-faded rounded-xl
-                    pointer-events-auto text-main overflow-hidden
+                    w-fit h-fit p-10 flex flex-col justify-center items-start bg-black/40 rounded-xl
+                    pointer-events-auto text-white overflow-hidden border-accent border-[1px]
+                    backdrop-blur-sm
                 `
             }
             {...rest}

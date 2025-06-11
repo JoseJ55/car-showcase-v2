@@ -11,8 +11,8 @@ export const Button = ({ className, text, onClick, ...rest }: ButtonInterface) =
             className={
                 `
                     ${className}
-                    bg-accent/70 hover:bg-accent border-none rounded-xl py-2 px-4 min-w-[150px] 
-                    hover:cursor-pointer text-main
+                    hover:bg-accent/70 border-none rounded-xl py-2 px-4 min-w-[150px] 
+                    hover:cursor-pointer text-white transition-all duration-200 ease-in-out
                 `
             }
             onClick={onClick}

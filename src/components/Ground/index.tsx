@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { useLoader } from '@react-three/fiber';
 import { MeshReflectorMaterial } from '@react-three/drei';
@@ -23,28 +23,33 @@ export const Ground = () => {
         configureTexture();
     }, [configureTexture]);
 
+    const planeGeo = useMemo(() => <planeGeometry args={[30, 30]} />, []);
+    const groundMat = useMemo(() => (
+        <MeshReflectorMaterial
+            envMapIntensity={1}
+            metalness={0.6}
+            normalMap={normal}
+            normalScale={[1, 1]}
+            roughnessMap={roughness}
+            dithering
+            color={[0.15, 0.15, 0.15]}
+            roughness={0.7}
+            mixStrength={0.5}
+            mixContrast={1}
+            resolution={1024}
+            mirror={0.4}
+            depthScale={0.01}
+            minDepthThreshold={0.9}
+            maxDepthThreshold={1}
+            depthToBlurRatioBias={0.15}
+            reflectorOffset={0.2}
+        />
+    ), [normal, roughness]);
+
     return (
         <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
-            <planeGeometry args={[30, 30]} />
-            <MeshReflectorMaterial
-                envMapIntensity={1}
-                metalness={0.6}
-                normalMap={normal}
-                normalScale={[1, 1]}
-                roughnessMap={roughness}
-                dithering
-                color={[0.15, 0.15, 0.15]}
-                roughness={0.7}
-                mixStrength={0.5}
-                mixContrast={1}
-                resolution={1024}
-                mirror={0.4}
-                depthScale={0.01}
-                minDepthThreshold={0.9}
-                maxDepthThreshold={1}
-                depthToBlurRatioBias={0.15}
-                reflectorOffset={0.2}
-            />
+            {planeGeo}
+            {groundMat}
         </mesh>
     );
 };
