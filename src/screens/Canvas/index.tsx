@@ -37,8 +37,9 @@ export const CanvasScreen = () => {
                 <color args={[0, 0, 0]} attach='background' />
 
                 <Lights />
+                {/* <Stats /> */}
 
-                <CubeCamera resolution={128} frames={Infinity}>
+                <CubeCamera resolution={128} frames={1}>
                     {(texture) => {
                         return (
                             <>
@@ -102,7 +103,7 @@ export const CanvasScreen = () => {
                                 >
                                     <Button
                                         className='self-center'
-                                        text='vibe'
+                                        text='VIBE'
                                         onClick={() => state.currentEnvironment = 'vibe'}
                                     />
                                 </BgContainer>
@@ -136,10 +137,10 @@ export const CanvasScreen = () => {
                                     />
                                 </BgContainer>
 
-                                <motion.div
+                                {/* <motion.div
                                     className={
                                         `
-                                            absolute bottom-4 right-4 w-fit pointer-events-auto rounded-xl border-2 
+                                            absolute bottom-4 right-4 w-fit pointer-events-auto rounded-xl border-2
                                             border-accent overflow-hidden
                                         `
                                     }
@@ -148,7 +149,7 @@ export const CanvasScreen = () => {
                                     <button
                                         className={
                                             `
-                                                bg-faded/80 w-[150px] px-2 py-2 text-black hover:cursor-pointer 
+                                                bg-faded/80 w-[150px] px-2 py-2 text-black hover:cursor-pointer
                                                 hover:bg-faded
                                             `
                                         }
@@ -160,7 +161,7 @@ export const CanvasScreen = () => {
                                     >
                                         Test
                                     </button>
-                                </motion.div>
+                                </motion.div> */}
 
                                 <motion.div
                                     className={
@@ -174,15 +175,15 @@ export const CanvasScreen = () => {
                                     <button
                                         className={
                                             `
-                                                bg-faded/80 w-[150px] px-2 py-2 text-black hover:cursor-pointer 
-                                                hover:bg-faded
+                                                bg-black/50 w-[150px] px-2 py-2 text-white hover:cursor-pointer 
+                                                hover:bg-faded/80 hover:text-black transition-all duration-100 
+                                                ease-in-out backdrop-blur-sm
                                             `
                                         }
                                         type='button'
                                         aria-label='Customize'
                                         onClick={() => {
                                             state.intro = true;
-                                            state.colorPickerOpen = false;
                                         }}
                                     >
                                         Back
